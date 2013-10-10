@@ -2,47 +2,47 @@
 require 'Request/ThreadRequest.php';
 
 class ToptenRequest{
-    var $jsonUrl;       //æ•°æ®æ¥æºçš„JSON
-    var $json;      //è·å–çš„JSON
-    var $obj;       //è§£æåçš„å¯¹è±¡
-    var $table;     //äºŒç»´æ•°ç»„ï¼Œå½¢å¼ä¸ºarray[TopID]={ID,board}
+	var $jsonUrl;		//Êı¾İÀ´Ô´µÄJSON
+    var $json;		//»ñÈ¡µÄJSON
+    var $obj;		//½âÎöºóµÄ¶ÔÏó
+    var $table;		//¶şÎ¬Êı×é£¬ĞÎÊ½Îªarray[TopID]={ID,board}
     var $rainUrl;
     /*
-     * åˆå§‹åŒ–å„é¡¹APIèµ„æº
+     * ³õÊ¼»¯¸÷ÏîAPI×ÊÔ´
      */
     function __construct(){
-        $this->jsonUrl='http://bbs.jnrain.com/rainstyle/topten_json.php';
+		$this->jsonUrl='http://bbs.jnrain.com/rainstyle/topten_json.php';
         $this->json=file_get_contents($this->jsonUrl);
-        $this->obj=json_decode($this->json);
-        $this->rainUrl='http://bbs.jnrain.com/rainstyle/disparticle.php';
+		$this->obj=json_decode($this->json);
+		$this->rainUrl='http://bbs.jnrain.com/rainstyle/disparticle.php';
         $this->ToString();
     }
     
-    function ToString(){             //ç”Ÿæˆç”¨äºå¾®ä¿¡çš„åå¤§æ¦œå•
+    function ToString(){			 //Éú³ÉÓÃÓÚÎ¢ĞÅµÄÊ®´ó°ñµ¥
         $posts=$this->obj->posts;
         $i=1;
         foreach($posts as $topic){
-            $str=$str.$i.'.'.$topic->title."\n";
+        	$str=$str.$i.'.'.$topic->title."\n";
            
-            $this->table[$i]->ID=$topic->id;
+   			$this->table[$i]->ID=$topic->id;
             $this->table[$i]->board=$topic->board;
              $i++;
         }
-        
-        return $str;
+		
+       	return $str;
     }
     
     /*
-     * @param int $topIDæ•°å­—
+     * @param int $topIDÊı×Ö
      */
-    function getPost($topID){       //ç”Ÿæˆå¯¹åº”æ–‡ç« 
-        
+    function getPost($topID){       //Éú³É¶ÔÓ¦ÎÄÕÂ
+		
         $board=$this->table[$topID]->board;
         $ID=$this->table[$topID]->ID;
        
-        $re=new ThreadRequest($board, $ID);
-        $str=$re->getPost(1);
-        return $str;
+    	$re=new ThreadRequest($board, $ID);
+    	$str=$re->getPost(1);
+     	return $str;
     }
 }
 

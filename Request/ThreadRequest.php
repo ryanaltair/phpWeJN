@@ -1,31 +1,31 @@
 <?php 
 require_once 'html2txt.lib.php';
 /*
- * èŽ·å–å…·ä½“çš„æ–‡ç« 
+ * »ñÈ¡¾ßÌåµÄÎÄÕÂ
  */
 class ThreadRequest{
     var $jsonUrl;
     var $json;
     var $obj;
-    var $postArray;     //string[int $i]è¡¨ç¤º$iæ¥¼çš„å¸–å­
+    var $postArray;		//string[int $i]±íÊ¾$iÂ¥µÄÌû×Ó
     public  function __construct($boardName,$ID,$page=1){
-        
-        $this->jsonUrl="http://bbs.jnrain.com/rainstyle/thread_json.php?boardName=".$boardName."&ID=".$ID;
+     	
+		$this->jsonUrl="http://bbs.jnrain.com/rainstyle/thread_json.php?boardName=".$boardName."&ID=".$ID;
 
-        $this->json=file_get_contents($this->jsonUrl);
-        $this->obj=json_decode($this->json);
-        $i=0;
-        
-        foreach ($this->obj->posts as $po){
+		$this->json=file_get_contents($this->jsonUrl);
+		$this->obj=json_decode($this->json);
+		$i=0;
+		
+		foreach ($this->obj->posts as $po){
 
-            $this->postArray[$i+1]=html2text($po->content);     //æ¥¼å±‚ä»Žç¬¬ä¸€å±‚å¼€å§‹(ä¹‹å‰$içš„$æ¼äº†ä½ æ•¢ä¿¡ï¼ï¼æˆ‘æ¨php)
+			$this->postArray[$i+1]=html2text($po->content);		//Â¥²ã´ÓµÚÒ»²ã¿ªÊ¼(Ö®Ç°$iµÄ$Â©ÁËÄã¸ÒÐÅ£¡£¡ÎÒºÞphp)
 
-            $i++;       //ä¹‹å‰å¿˜äº†è¿™ä¸€å¥ä½ æ•¢ä¿¡ï¼Ÿ
-        }
+			$i++;		//Ö®Ç°ÍüÁËÕâÒ»¾äÄã¸ÒÐÅ£¿
+		}
         
     }
    /*
-    * è¿”å›žnæ¥¼çš„å¸–å­
+    * ·µ»ØnÂ¥µÄÌû×Ó
     * @param int $n
     * @return string 
     */
@@ -33,6 +33,6 @@ class ThreadRequest{
 
         return $this->postArray[$n];
     }
-    
+	
 }
 ?>
