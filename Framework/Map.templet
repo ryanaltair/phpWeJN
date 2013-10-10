@@ -1,0 +1,5 @@
+class MyMap extends Map{
+	function __construct(){
+		//Todo:在这里注册房间和主房间
+	}
+}

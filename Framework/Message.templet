@@ -1,0 +1,13 @@
+/*
+ *@author falling
+ *@class ClassName
+ */
+class ClassName extends Message{
+
+	public function __construct(){
+		//Todo:完成对Message的构造	
+		parent::__construct($type, $xml);
+	}
+	
+
+}

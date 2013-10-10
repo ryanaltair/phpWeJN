@@ -1,0 +1,18 @@
+/*
+ * @author falling
+ * @class WeApp
+ * App主类
+ */
+class MyApp extends WeApp{
+	/*
+	 *响应信息
+	 *@param Message $msg
+	 */
+	function OnMessage($msg){
+		if($msg->getType()=="text"){
+			
+		}
+	}
+	
+	
+}
