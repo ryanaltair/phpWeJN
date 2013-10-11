@@ -1,11 +1,11 @@
-/*
+ï»¿/*
  *@author falling
  *@class ClassName
  */
 class ClassName extends Message{
 
 	public function __construct(){
-		//Todo:Íê³É¶ÔMessageµÄ¹¹Ôì	
+		//Todo:ï¿½ï¿½É¶ï¿½Messageï¿½Ä¹ï¿½ï¿½ï¿½	
 		parent::__construct($type, $xml);
 	}
 	

@@ -1,11 +1,11 @@
-/*
+ï»¿/*
  * @author falling
  * @class WeApp
- * AppÖ÷Àà
+ * Appï¿½ï¿½ï¿½ï¿½
  */
 class MyApp extends WeApp{
 	/*
-	 *ÏìÓ¦ÐÅÏ¢
+	 *ï¿½ï¿½Ó¦ï¿½ï¿½Ï¢
 	 *@param Message $msg
 	 */
 	function OnMessage($msg){

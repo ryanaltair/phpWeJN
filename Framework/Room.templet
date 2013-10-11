@@ -1,7 +1,7 @@
-class FirstRoom extends Room{
-	/* 进入房间时要显示的消息
-	 * @param Message $strKey	进入房间的Key
-	 * @return Message 进入房间时要返回的消息
+锘縞lass FirstRoom extends Room{
+	/* 锟斤拷锟诫房锟斤拷时要锟斤拷示锟斤拷锟斤拷息
+	 * @param Message $strKey	锟斤拷锟诫房锟斤拷锟終ey
+	 * @return Message 锟斤拷锟诫房锟斤拷时要锟斤拷锟截碉拷锟斤拷息
 	 */
 	public function OnOpen($strKey){
 		
@@ -9,7 +9,7 @@ class FirstRoom extends Room{
 	
 	
 	/*
-	 * 设置附近的room
+	 * 锟斤拷锟矫革拷锟斤拷锟斤拷room
 	 * @param Message $strKey
 	 * @param string roomName
 	 */

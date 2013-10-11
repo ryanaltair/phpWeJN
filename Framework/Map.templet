@@ -1,5 +1,5 @@
-class MyMap extends Map{
+я╗┐class MyMap extends Map{
 	function __construct(){
-		//Todo:╘┌╒т└я╫в▓с╖┐╝ф║═╓ў╖┐╝ф
+		//Todo:я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜╫вя┐╜с╖┐я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜я┐╜
 	}
 }

@@ -2,13 +2,13 @@
 require 'Request/ThreadRequest.php';
 
 class ToptenRequest{
-	var $jsonUrl;		//Êý¾ÝÀ´Ô´µÄJSON
-    var $json;		//»ñÈ¡µÄJSON
-    var $obj;		//½âÎöºóµÄ¶ÔÏó
-    var $table;		//¶þÎ¬Êý×é£¬ÐÎÊ½Îªarray[TopID]={ID,board}
+	var $jsonUrl;		//JSONçš„è¯·æ±‚åœ°å€
+    var $json;		//èŽ·å¾—çš„JSON
+    var $obj;		//JSONè§£æžåŽçš„å¯¹è±¡
+    var $table;		//Aarray[TopID]={ID,board},å­˜å‚¨è§£æžåŽçš„åˆ—è¡¨
     var $rainUrl;
     /*
-     * ³õÊ¼»¯¸÷ÏîAPI×ÊÔ´
+     * åˆå§‹åŒ–API
      */
     function __construct(){
 		$this->jsonUrl='http://bbs.jnrain.com/rainstyle/topten_json.php';
@@ -18,7 +18,7 @@ class ToptenRequest{
         $this->ToString();
     }
     
-    function ToString(){			 //Éú³ÉÓÃÓÚÎ¢ÐÅµÄÊ®´ó°ñµ¥
+    function ToString(){			 //è¿”å›žå…·ä½“çš„åˆ—è¡¨æ–‡æœ¬
         $posts=$this->obj->posts;
         $i=1;
         foreach($posts as $topic){
@@ -33,9 +33,9 @@ class ToptenRequest{
     }
     
     /*
-     * @param int $topIDÊý×Ö
+     * @param int $topID åå¤§åˆ—è¡¨ä¸­å¸–å­çš„IDï¼ˆ1-10ï¼‰
      */
-    function getPost($topID){       //Éú³É¶ÔÓ¦ÎÄÕÂ
+    function getPost($topID){       //èŽ·å–å¸–å­
 		
         $board=$this->table[$topID]->board;
         $ID=$this->table[$topID]->ID;
