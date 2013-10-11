@@ -1,13 +1,13 @@
 <?php 
 require_once 'html2txt.lib.php';
 /*
- * 链接具体的帖子
+ * 获取具体的文章
  */
 class ThreadRequest{
     var $jsonUrl;
     var $json;
     var $obj;
-    var $postArray;     //string[int $i] 存储帖子
+    var $postArray;     //string[int $i]表示$i楼的帖子
     public  function __construct($boardName,$ID,$page=1){
         
         $this->jsonUrl="http://bbs.jnrain.com/rainstyle/thread_json.php?boardName=".$boardName."&ID=".$ID;
@@ -18,16 +18,16 @@ class ThreadRequest{
         
         foreach ($this->obj->posts as $po){
 
-            $this->postArray[$i+1]=html2text($po->content);     //帖子是从一楼开始
+            $this->postArray[$i+1]=html2text($po->content);     //楼层从第一层开始(之前$i的$漏了你敢信！！我恨php)
 
-            $i++;       //之前给漏了
+            $i++;       //之前忘了这一句你敢信？
         }
         
     }
    /*
-    * 获得帖子的n楼
-    * @param int $n         //楼层
-    * @return string        //返回具体楼层的内容
+    * 返回n楼的帖子
+    * @param int $n
+    * @return string 
     */
     function getPost($n){
 
