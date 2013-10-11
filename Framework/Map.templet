@@ -1,5 +1,0 @@
-﻿class MyMap extends Map{
-	function __construct(){
-		//Todo:������ע�᷿���������
-	}
-}
