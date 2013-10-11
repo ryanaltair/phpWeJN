@@ -1,49 +1,36 @@
 <?php
-require 'Request/ThreadRequest.php';
+//require 'Request/ThreadRequest.php';
+require_once 'Request.php';
 
-class ToptenRequest{
-    var $jsonUrl;       //数据来源的JSON
-    var $json;      //获取的JSON
-    var $obj;       //解析后的对象
-    var $table;     //二维数组，形式为array[TopID]={ID,board}
-    var $rainUrl;
-    /*
-     * 初始化各项API资源
-     */
-    function __construct(){
-        $this->jsonUrl='http://bbs.jnrain.com/rainstyle/topten_json.php';
-        $this->json=file_get_contents($this->jsonUrl);
-        $this->obj=json_decode($this->json);
-        $this->rainUrl='http://bbs.jnrain.com/rainstyle/disparticle.php';
-        $this->ToString();
-    }
-    
-    function ToString(){             //生成用于微信的十大榜单
-        $posts=$this->obj->posts;
-        $i=1;
-        foreach($posts as $topic){
-            $str=$str.$i.'.'.$topic->title."\n";
-           
-            $this->table[$i]->ID=$topic->id;
-            $this->table[$i]->board=$topic->board;
-             $i++;
-        }
-        
-        return $str;
-    }
-    
-    /*
-     * @param int $topID数字
-     */
-    function getPost($topID){       //生成对应文章
-        
-        $board=$this->table[$topID]->board;
-        $ID=$this->table[$topID]->ID;
-       
-        $re=new ThreadRequest($board, $ID);
-        $str=$re->getPost(1);
-        return $str;
-    }
+class ToptenRequest extends Request{
+	/*
+	 * inArray=NULL
+	 * outArray=array(
+	 * 		"1" => array(
+	 * 			"title" => "第一条帖子标题",
+	 * 			"ID" => "帖子在BBS的ID"，
+	 * 			"boardName" => "帖子所在的板块名",
+	 * 		)
+	 * 		"2" =>....
+	 * )
+	 */
+	protected function Process(){
+		$APIUrl='http://bbs.jnrain.com/rainstyle/topten_json.php'; 	//API地址，返回JSON
+		$json=file_get_contents($APIUrl);	
+		$obj=json_decode($json);
+
+		//下面构建返回数据
+		foreach ($obj->posts as $post){
+			$this->OutArray[]=array(		
+				"title" => $post->title,
+				"ID" => $post->id,
+				"boardName" => iconv('utf-8', 'gbk',$post->board),
+			);		
+		}
+	}
+	
+	
+	
 }
 
 ?>

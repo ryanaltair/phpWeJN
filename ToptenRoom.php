@@ -15,10 +15,26 @@ class ToptenRoom extends Room{
 	public function OnOpen($strKey){
 
 		$request=new ToptenRequest();	//链接听雨BBS十大
-		$str=$request->ToString();
+		$request->setRequest(NULL);		
+		$reqArray=$request->getRequest();
+		$str=$this->getStrList($reqArray);		//生成列表
+		
 		return new TextMessage($str);
 	}
 
+	/*
+	 * 获取文字式的列表
+	 * @param array $array  //Request提供的array
+	 * @return string 要返回的文本
+	 */
+	function getStrList($array){
+		$i=1;				//序号
+		foreach ($array as $post) {
+			$str=$str.$i.'.'.$post['title'].'\n';
+			$i++;
+		}
+		return $str;
+	}
 
 	/*
 	 * 设置附近的room

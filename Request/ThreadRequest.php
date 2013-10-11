@@ -1,37 +1,37 @@
 <?php 
+require_once 'Request.php';
 require_once 'html2txt.lib.php';
 /*
  * 获取具体的文章
  */
-class ThreadRequest{
-    var $jsonUrl;
-    var $json;
-    var $obj;
-    var $postArray;     //string[int $i]表示$i楼的帖子
-    public  function __construct($boardName,$ID,$page=1){
-        
-        $this->jsonUrl="http://bbs.jnrain.com/rainstyle/thread_json.php?boardName=".$boardName."&ID=".$ID;
+class ThreadRequest extends Request{
+    /*
+     *  InArray=array(
+     *      "ID" => "帖子的ID",
+     *      "boardName" => "板块名",
+     *  )
+     *
+     *  OutArray=array(
+     *      "title" => "帖子的标题",
+     *      "content" => "一楼的内容",
+     *      "link" => "帖子的链接"
+     *  )
+     */
+    function Process(){
 
-        $this->json=file_get_contents($this->jsonUrl);
-        $this->obj=json_decode($this->json);
-        $i=0;
-        
-        foreach ($this->obj->posts as $po){
+        $boardName=$this->InArray["boardName"];
+        $ID=$this->InArray["ID"];
+        $APIUrl="http://bbs.jnrain.com/rainstyle/thread_json_ubb.php?boardName=".$boardName."&ID=".$ID;     
+        $LinkUrl="http://www.jnrain.com/rainstyle/disparticle.php?boardName=".$boardName."&ID=".$ID;    //帖子的链接地址
+        //下面开始解析
+        $json=file_get_contents($APIUrl);
+        $obj=json_decode($json);
+        $this->OutArray=array(
+            "title" => $obj->posts[0]->title,
+            "content" => $obj->posts[0]->content,
+            "link" => $LinkUrl
+        );
 
-            $this->postArray[$i+1]=html2text($po->content);     //楼层从第一层开始(之前$i的$漏了你敢信！！我恨php)
-
-            $i++;       //之前忘了这一句你敢信？
-        }
-        
-    }
-   /*
-    * 返回n楼的帖子
-    * @param int $n
-    * @return string 
-    */
-    function getPost($n){
-
-        return $this->postArray[$n];
     }
     
 }
