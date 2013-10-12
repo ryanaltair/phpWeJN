@@ -8,28 +8,27 @@
 请尽量遵守统一的命名风格，具体规则见name_rule.txt   
 
 ##Map-Room模式
-嗯好吧这是我自己起的名字，为了实现微信功能的模块式添加（将其添加到功能菜单的某一层），    
-具体的流程仿照wechat.el的模式：    
+###代码组织思路
 * 把整个应用抽象成一张大的地图   
 * 每一种状态都看作一个独立的房间，房间之间有很多扇门连接   
 * 进入房间时自动输出提示语，即返回给用户的信息   
 * 用户的输入就是钥匙，依次与该房间的门匹配（责任链模式），如果能开启，就通过这一扇门进入下一个房间，即状态迁移（状态模式）   
 
-就现在来说，要添加新的功能（例如在主菜单里加入一个回复Hello的功能，用户看到主菜单后输入3即可得到回复），要做的步骤有   
-* 写一个继承于Room类的XXRoom类，重载其OnOpen($strKey)函数 
-```php
-protected function OnOpen($strKey){    
-	return new TextMessage("hello");    
-} 
-```
-* 将XXRoom注册为FirstRoom附近的Room，即在FirstRoom的SetNear()中加入    
-```php
-$this->NewNear("3","XXRoom");   
-```   
+###加入新的功能模块
+例如在主菜单里加入一个回复Hello的功能，用户看到主菜单后输入3即可得到回复
+* 写一个继承于Room类的XXRoom类，重载其OnOpen($strKey)函数 		
+		
+		protected function OnOpen($strKey){		   
+			return new TextMessage("hello");    	
+		} 
+
+* 将XXRoom注册为FirstRoom附近的Room，即在FirstRoom的SetNear()中加入    		
+
+		$this->NewNear("3","XXRoom");   
+   
 * 在MyMap类的构造函数内注册XXRoom，即在MyMap的构造函数中加入    
-```php
-$this->NewRoom(new XXRoom());   
-```
+
+		$this->NewRoom(new XXRoom());   
 
 ##API
 暂时使用听雨旧站的API，请使用Provider模式以保证新听雨上线时能够方便更改API（虽然现在还未采用，仍然比较混乱）   
