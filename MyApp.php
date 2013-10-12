@@ -12,7 +12,7 @@ class MyApp extends WeApp{
 	 *响应信息
 	 *@param Message $msg
 	 */
-	function OnText($text){
+	protected function OnText($text){
 		$map=new MyMap();
 		$out=$map->EnterMap($this->fromUsername,$text);	//进入地图，并得到反馈的信息
 		if($out!=NULL){		//信息被处理并回复
@@ -23,9 +23,12 @@ class MyApp extends WeApp{
 		}
 	}
 	
-	function OnLocation($x, $y, $scale){
+	protected function OnLocation($x, $y, $scale){
 		
 	}
 	
+	protected function OnImage($picUrl){
+		
+	}
 }
 ?>

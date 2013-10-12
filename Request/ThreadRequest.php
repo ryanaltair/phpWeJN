@@ -17,7 +17,7 @@ class ThreadRequest extends Request{
      *      "link" => "帖子的链接"
      *  )
      */
-    function Process(){
+    protected function Process(){
 
         $boardName=$this->InArray["boardName"];
         $ID=$this->InArray["ID"];

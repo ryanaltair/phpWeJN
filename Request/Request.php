@@ -3,7 +3,7 @@
  * Request类基类，用于访问网络资源并解析返回
  * 该类为抽象类，应该被继承
  */
-class Request{
+abstract class Request{
 	protected $InArray;		//传入的数据，二维数组Array[参数名]=参数
 	protected $OutArray;	//传出的数据,二维数组Array[数据名]=数据
 	/*
@@ -14,7 +14,7 @@ class Request{
 		$this->InArray=$inArray;
 	}
 	//处理Request，该方法应被重载
-	protected function Process(){}
+	abstract protected function Process();
 	
 	/*
 	 * 该方法应该被重载，用于返回请求的数据

@@ -43,9 +43,7 @@ abstract class Room{
 	 * @param string $strKey
 	 * @param string roomName
 	 */
-	protected  function setNear(){
-		
-	}
+	abstract protected function setNear();
 	
 	/*
 	 * 注册nearRoom

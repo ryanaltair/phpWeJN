@@ -27,7 +27,7 @@ class ToptenRoom extends Room{
 	 * @param array $array  //Request提供的array
 	 * @return string 要返回的文本
 	 */
-	function getStrList($array){
+	private function getStrList($array){
 		$i=1;				//序号
 		foreach ($array as $post) {
 			$str=$str.$i.'.'.$post['title'].'\n';

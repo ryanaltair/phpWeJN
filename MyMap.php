@@ -4,7 +4,7 @@ require_once 'FirstRoom.php';
 require_once 'ToptenRoom.php';
 require_once 'ToptenMoreRoom.php';
 class MyMap extends Map{
-	function __construct(){
+	public function __construct(){
 		$mainRoom=new FirstRoom();
 		$this->NewRoom($mainRoom);
 		$this->setMainRoom(get_class($mainRoom));

@@ -35,24 +35,13 @@ abstract class WeApp{
         }
     }
     
-    protected function OnText($text){		//$text为收到的文本信息
-    	//--------处理文本信息----------//
-    	//---该函数应被重载---------//
-    }
+    abstract protected function OnText($text);		//处理文本信息,$text为收到的文本信息
+    
 
-    protected function OnImage($picUrl){		//$picUrl为收到的图片地址
-    	//--------处理图片信息----------//
-    	//---该函数应被重载-------------//
+    abstract protected function OnImage($picUrl);		//处理图片信息,$picUrl为收到的图片地址
 
-    }
-
-    protected function OnLocation($x,$y,$scale){		//$x,$y分别表示位置坐标，$scale表示地图缩放大小
-    	//--------处理地理位置信息----------//
-    	//---该函数应被重载-------------//
-
-    }
-
-
+    abstract protected function OnLocation($x,$y,$scale);		//处理地理位置信息,$x,$y分别表示位置坐标，$scale表示地图缩放大小
+ 
 	/*
 	 * 输出Message
 	 * @param Message $msg要输出的Message
