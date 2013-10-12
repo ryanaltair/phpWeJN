@@ -14,20 +14,21 @@ class ToptenRequest extends Request{
 	 * 		"1" =>....
 	 * )
 	 */
-	protected function Process(){
+	public function doRequest($inArray){
 		$APIUrl='http://bbs.jnrain.com/rainstyle/topten_json.php'; 	//API地址，返回JSON
 		$json=file_get_contents($APIUrl);	
 		$obj=json_decode($json);
 
 		//下面构建返回数据
-		$this->OutArray = array();
+		$outArray = array();
 		foreach ($obj->posts as $post){
-				$this->OutArray[]=array(		
+				$outArray[]=array(		
 				"title" => $post->title,
 				"ID" => $post->id,
 				"boardName" => $post->board,
 			);		
 		}
+		return $outArray;
 	}
 	
 	

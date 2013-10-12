@@ -15,8 +15,7 @@ class ToptenRoom extends Room{
 	public function OnOpen($strKey){
 
 		$request=new ToptenRequest();	//链接听雨BBS十大
-		$request->setRequest(NULL);		
-		$reqArray=$request->getRequest();
+		$reqArray=$request->doRequest(NULL);		
 		$str=$this->getStrList($reqArray);		//生成列表
 		
 		return new TextMessage($str);

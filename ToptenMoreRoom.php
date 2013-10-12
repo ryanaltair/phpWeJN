@@ -16,8 +16,8 @@ class ToptenMoreRoom extends Room{
 	public function OnOpen($strKey,$openID){
 		$strKey=$strKey."";			//应付一下奇葩的Illegal offset type问题
 		$topReq=new ToptenRequest();	//链接听雨BBS十大
-		$topReq->setRequest(NULL);		
-		$topArray=$topReq->getRequest();
+	
+		$topArray=$topReq->doRequest(NULL);
 
 		//为请求具体的帖子准备
 		$readReq=new ThreadRequest();
@@ -26,9 +26,9 @@ class ToptenMoreRoom extends Room{
 			"ID" => $topArray[$strKey-1]["ID"],
 			"boardName" => $topArray[$strKey-1]["boardName"]
 		);
-		$readReq->setRequest($inArray);
+	
 		//读取
-		$readArray=$readReq->getRequest();
+		$readArray=$readReq->doRequest($inArray);
 		$str=$readArray["title"];
 		return new TextMessage($str);
 	}
