@@ -14,7 +14,7 @@ class ToptenMoreRoom extends Room{
 	 * @return Message 进入房间时要返回的消息
 	 */
 	public function OnOpen($strKey,$openID){
-		$strKey=$strKey."";
+		$strKey=$strKey."";			//应付一下奇葩的Illegal offset type问题
 		$topReq=new ToptenRequest();	//链接听雨BBS十大
 		$topReq->setRequest(NULL);		
 		$topArray=$topReq->getRequest();
@@ -23,8 +23,8 @@ class ToptenMoreRoom extends Room{
 		$readReq=new ThreadRequest();
 
 		$inArray=array(
-			"ID" => $topArray[$strKey]["ID"],
-			"boardName" => $topArray[$strKey]["boardName"]
+			"ID" => $topArray[$strKey-1]["ID"],
+			"boardName" => $topArray[$strKey-1]["boardName"]
 		);
 		$readReq->setRequest($inArray);
 		//读取

@@ -6,12 +6,12 @@ class ToptenRequest extends Request{
 	/*
 	 * inArray=NULL
 	 * outArray=array(
-	 * 		"1" => array(
+	 * 		"0" => array(
 	 * 			"title" => "第一条帖子标题",
 	 * 			"ID" => "帖子在BBS的ID"，
 	 * 			"boardName" => "帖子所在的板块名",
 	 * 		)
-	 * 		"2" =>....
+	 * 		"1" =>....
 	 * )
 	 */
 	protected function Process(){
@@ -20,8 +20,9 @@ class ToptenRequest extends Request{
 		$obj=json_decode($json);
 
 		//下面构建返回数据
+		$this->OutArray = array();
 		foreach ($obj->posts as $post){
-			$this->OutArray[]=array(		
+				$this->OutArray[]=array(		
 				"title" => $post->title,
 				"ID" => $post->id,
 				"boardName" => $post->board,
