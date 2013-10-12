@@ -24,7 +24,7 @@ class ToptenRequest extends Request{
 			$this->OutArray[]=array(		
 				"title" => $post->title,
 				"ID" => $post->id,
-				"boardName" => iconv('utf-8', 'gbk',$post->board),
+				"boardName" => $post->board,
 			);		
 		}
 	}
