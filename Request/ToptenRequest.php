@@ -28,6 +28,7 @@ class ToptenRequest extends Request{
 				"boardName" => $post->board,
 			);		
 		}
+		
 		return $outArray;
 	}
 	

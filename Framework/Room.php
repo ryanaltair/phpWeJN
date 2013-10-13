@@ -26,7 +26,10 @@ abstract class Room{
 	public function getNear($strKey){
 
 		$this->setNear();
-		if($this->nearRoom!=NULL){		//附近有房间
+		//"*"表示统配Key，当有个功能需要收集所有输入时用这个作为房间Key
+		if($this->nearRoom["*"]!=NULL){			//存在使用通配符作为Key的房间
+			return $this->nearRoom["*"];
+		}elseif($this->nearRoom!=NULL){		//附近有房间
   		$strKey=$strKey.'';		//!!!未知Bug，用该方式暂时处理
 			if($this->nearRoom[$strKey]==NUll){		//未定义的key
 				return NULL;
