@@ -9,7 +9,7 @@ class TextMessage extends Message{
 	 *@param string $text信息的文本
 	 */
 	public function __construct($text){
-		$this->data["text"]=$text;
+
 		$xml="<xml>
 		<ToUserName><![CDATA[%s]]></ToUserName>
  		<FromUserName><![CDATA[%s]]></FromUserName> 

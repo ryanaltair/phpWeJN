@@ -9,7 +9,7 @@
 abstract class Message{
 	var $type;
 	var $xml;
-	public $data;		//数组，存放数据
+
 	/*
 	 * 构造函数应该被重载
 	 * 在子类中构造完成后呼叫该构造函数

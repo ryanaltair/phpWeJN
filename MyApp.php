@@ -1,6 +1,7 @@
 <?php
 require_once 'Framework/WeApp.php';
 require_once 'Framework/TextMessage.php';
+require_once 'Framework/NewsMessage.php';
 require_once 'MyMap.php';
 /*
  * @author falling
